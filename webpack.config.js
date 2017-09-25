@@ -18,7 +18,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 module.exports = env => ({
-	devtool: 'source-map',
   entry: {
     index: path.resolve(__dirname, 'src', 'index.js')
   },
