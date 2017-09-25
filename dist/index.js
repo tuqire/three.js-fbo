@@ -166,3 +166,4 @@ var FBO = function () {
 }();
 
 exports.default = FBO;
+module.exports = exports['default'];

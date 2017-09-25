@@ -2,5 +2,9 @@
   "presets": [
     "es2015",
     "stage-2"
+  ],
+  "plugins": [
+    "add-module-exports",
+    "transform-object-entries"
   ]
 }
