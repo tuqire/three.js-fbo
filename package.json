@@ -1,6 +1,6 @@
 {
   "name": "three.js-fbo",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "FBO Module for use with THREE.js",
   "main": "dist/index.js",
   "scripts": {
@@ -24,7 +24,7 @@
     "url": "https://github.com/tuqire/three.js-fbo/issues"
   },
   "homepage": "https://github.com/tuqire/three.js-fbo#readme",
-  "dependencies": {
+  "peerDependencies": {
     "three": "^0.85.0"
   },
   "devDependencies": {
