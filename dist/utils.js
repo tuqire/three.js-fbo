@@ -7,9 +7,9 @@ exports.createDataTexture = createDataTexture;
 
 var _three = require('three');
 
-var _three2 = _interopRequireDefault(_three);
+var THREE = _interopRequireWildcard(_three);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function createDataTexture(_ref) {
 	var data = _ref.data,
@@ -18,7 +18,7 @@ function createDataTexture(_ref) {
 	    format = _ref.format,
 	    filterType = _ref.filterType;
 
-	var dataTexture = new _three2.default.DataTexture(data, tWidth, tHeight, format, _three2.default.FloatType);
+	var dataTexture = new THREE.DataTexture(data, tWidth, tHeight, format, THREE.FloatType);
 
 	dataTexture.minFilter = dataTexture.magFilter = filterType;
 	dataTexture.needsUpdate = true;

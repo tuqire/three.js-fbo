@@ -1,4 +1,4 @@
-import THREE from 'three';
+import * as THREE from 'three';
 import { createDataTexture } from './utils';
 
 export default class FBO {

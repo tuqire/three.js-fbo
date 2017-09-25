@@ -10,11 +10,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _three = require('three');
 
-var _three2 = _interopRequireDefault(_three);
+var THREE = _interopRequireWildcard(_three);
 
 var _utils = require('./utils');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -28,9 +28,9 @@ var FBO = function () {
 		    _ref$numTargets = _ref.numTargets,
 		    numTargets = _ref$numTargets === undefined ? 3 : _ref$numTargets,
 		    _ref$filterType = _ref.filterType,
-		    filterType = _ref$filterType === undefined ? _three2.default.NearestFilter : _ref$filterType,
+		    filterType = _ref$filterType === undefined ? THREE.NearestFilter : _ref$filterType,
 		    _ref$format = _ref.format,
-		    format = _ref$format === undefined ? _three2.default.RGBAFormat : _ref$format,
+		    format = _ref$format === undefined ? THREE.RGBAFormat : _ref$format,
 		    renderer = _ref.renderer,
 		    uniforms = _ref.uniforms,
 		    simulationVertexShader = _ref.simulationVertexShader,
@@ -45,7 +45,7 @@ var FBO = function () {
 		this.format = format;
 		this.renderer = renderer;
 
-		this.simulationShader = new _three2.default.ShaderMaterial({
+		this.simulationShader = new THREE.ShaderMaterial({
 			uniforms: Object.assign({}, uniforms, {
 				numFrames: { type: 'f', value: 60 },
 				tPrev: { type: 't', value: null },
@@ -55,10 +55,10 @@ var FBO = function () {
 			fragmentShader: simulationFragmentShader
 		});
 
-		this.cameraRTT = new _three2.default.OrthographicCamera(-tWidth / 2, tWidth / 2, tHeight / 2, -tHeight / 2, -1000000, 1000000);
+		this.cameraRTT = new THREE.OrthographicCamera(-tWidth / 2, tWidth / 2, tHeight / 2, -tHeight / 2, -1000000, 1000000);
 		this.cameraRTT.position.z = 0.1;
 
-		this.sceneRTTPos = new _three2.default.Scene();
+		this.sceneRTTPos = new THREE.Scene();
 		this.sceneRTTPos.add(this.cameraRTT);
 
 		this.floatType = this.getType();
@@ -68,8 +68,8 @@ var FBO = function () {
 			this.targets.push(this.createTarget());
 		}
 
-		this.plane = new _three2.default.PlaneBufferGeometry(tWidth, tHeight);
-		var quad = new _three2.default.Mesh(this.plane, this.simulationShader);
+		this.plane = new THREE.PlaneBufferGeometry(tWidth, tHeight);
+		var quad = new THREE.Mesh(this.plane, this.simulationShader);
 		this.sceneRTTPos.add(quad);
 
 		this.count = -1;
@@ -84,25 +84,25 @@ var FBO = function () {
 	_createClass(FBO, [{
 		key: 'getType',
 		value: function getType() {
-			var renderTarget = new _three2.default.WebGLRenderTarget(16, 16, {
-				format: _three2.default.RGBAFormat,
-				type: _three2.default.FloatType
+			var renderTarget = new THREE.WebGLRenderTarget(16, 16, {
+				format: THREE.RGBAFormat,
+				type: THREE.FloatType
 			});
 			this.renderer.get().render(this.sceneRTTPos, this.cameraRTT, renderTarget);
 			var gl = this.renderer.get().context;
 			var status = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
 			if (status !== gl.FRAMEBUFFER_COMPLETE) {
 				console.log('FloatType not supported');
-				return _three2.default.HalfFloatType;
+				return THREE.HalfFloatType;
 			}
-			return _three2.default.FloatType;
+			return THREE.FloatType;
 		}
 	}, {
 		key: 'createTarget',
 		value: function createTarget() {
-			var target = new _three2.default.WebGLRenderTarget(this.tWidth, this.tHeight, {
-				wrapS: _three2.default.ClampToEdgeWrapping,
-				wrapT: _three2.default.ClampToEdgeWrapping,
+			var target = new THREE.WebGLRenderTarget(this.tWidth, this.tHeight, {
+				wrapS: THREE.ClampToEdgeWrapping,
+				wrapT: THREE.ClampToEdgeWrapping,
 				minFilter: this.filterType,
 				magFilter: this.filterType,
 				format: this.format,
@@ -166,4 +166,3 @@ var FBO = function () {
 }();
 
 exports.default = FBO;
-module.exports = exports['default'];
