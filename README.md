@@ -1,7 +1,5 @@
 TODO:
 
-remove custom renderer requirement
-
 # three.js-fbo
 
 FBO Module for use with THREE.js.
