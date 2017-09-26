@@ -88,8 +88,8 @@ var FBO = function () {
 				format: THREE.RGBAFormat,
 				type: THREE.FloatType
 			});
-			this.renderer.get().render(this.sceneRTTPos, this.cameraRTT, renderTarget);
-			var gl = this.renderer.get().context;
+			this.renderer.render(this.sceneRTTPos, this.cameraRTT, renderTarget);
+			var gl = this.renderer.context;
 			var status = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
 			if (status !== gl.FRAMEBUFFER_COMPLETE) {
 				console.log('FloatType not supported');
@@ -145,12 +145,7 @@ var FBO = function () {
 			var prev = (this.count === 0 ? this.numTargets : this.count) - 1;
 			var prevTarget = this.targets[prev];
 
-			this.renderer.render({
-				scene: this.sceneRTTPos,
-				camera: this.cameraRTT,
-				renderTarget: this.getCurrentFrame(),
-				force: false
-			});
+			this.renderer.render(this.sceneRTTPos, this.cameraRTT, this.getCurrentFrame());
 
 			this.simulationShader.uniforms.tPrev.value = prevTarget;
 			this.simulationShader.uniforms.tCurr.value = this.getCurrentFrame();
