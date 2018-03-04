@@ -1,9 +1,28 @@
 {
-  "presets": [
-    ["env", {
-      "targets": {
-        "browsers": "last 2 versions"
-      }
-    }]
-  ]
+  "env": {
+    "development": {
+      "presets": [
+        ["env", {
+          "browsers": "last 2 versions"
+        }]
+      ],
+      "plugins": [
+        "transform-class-properties",
+        "transform-es2015-modules-commonjs",
+        "transform-es2017-object-entries",
+        "transform-object-rest-spread",
+        "array-includes"
+      ]
+    },
+    "esm": {
+      "presets": [
+        "es2016"
+      ],
+      "plugins": [
+        "transform-es2017-object-entries",
+        "transform-object-rest-spread",
+        "array-includes"
+      ]
+    }
+  }
 }
