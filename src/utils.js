@@ -1,12 +1,12 @@
 import * as THREE from 'three'
 
-export function createDataTexture ({
+export const createDataTexture = ({
   data,
   tWidth,
   tHeight,
   format,
   filterType
-}) {
+}) => {
   const dataTexture = new THREE.DataTexture(
     data,
     tWidth,
