@@ -24,7 +24,8 @@ export default class FBO {
       uniforms: Object.assign({}, uniforms, {
         numFrames: { type: 'f', value: 60 },
         tPrev: { type: 't', value: null },
-        tCurr: { type: 't', value: null }
+        tCurr: { type: 't', value: null },
+        delta: { type: 't', value: null }
       }),
       vertexShader: simulationVertexShader,
       fragmentShader: simulationFragmentShader
@@ -101,7 +102,7 @@ export default class FBO {
     }
   }
 
-  simulate () {
+  simulate (delta) {
     this.count++
 
     if (this.count === this.numTargets) {
@@ -118,6 +119,7 @@ export default class FBO {
     )
 
     this.simulationShader.uniforms.tPrev.value = prevTarget
+    this.simulationShader.uniforms.delta.value = delta
     this.simulationShader.uniforms.tCurr.value = this.getCurrentFrame()
   }
 
