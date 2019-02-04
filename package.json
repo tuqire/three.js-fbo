@@ -1,6 +1,6 @@
 {
   "name": "three.js-fbo",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "FBO Module for use with THREE.js",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
